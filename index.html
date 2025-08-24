@@ -1,0 +1,581 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Les Coursiers Montpelliérains - Livraison de Repas Éthique</title>
+    <style>
+        /* --- Import des Polices (Alternatives Google Fonts) --- */
+        @import url('https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@300;400;700&family=Slabo+27px&display=swap');
+
+        /* --- Charte Graphique & Variables --- */
+        :root {
+            --orange: #F9B800;
+            --bleu: #004D9B;
+            --fond-clair: #f8f9fa;
+            --blanc: #ffffff;
+            --texte-principal: #333;
+
+            /* Alternatives Typographiques */
+            --font-identitaire: 'Roboto Condensed', sans-serif; /* Alternative pour Helvetica Neue */
+            --font-courante: 'Roboto Condensed', sans-serif;   /* Alternative pour Bahnschrift */
+            --font-contraste: 'Slabo 27px', serif;             /* Alternative pour Rockwell */
+        }
+
+        /* --- Styles Généraux & Reset --- */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: var(--font-courante);
+            font-size: 16px;
+            line-height: 1.6;
+            color: var(--texte-principal);
+            background-color: var(--blanc);
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        section {
+            padding: 60px 0;
+        }
+
+        h1, h2, h3 {
+            font-family: var(--font-identitaire);
+            font-weight: 700; /* Black Condensed */
+            color: var(--bleu);
+            line-height: 1.2;
+            margin-bottom: 20px;
+        }
+
+        h2 {
+            font-size: 2.5rem;
+            text-align: center;
+        }
+        
+        h3 {
+            font-size: 1.8rem;
+        }
+
+        p {
+            margin-bottom: 15px;
+        }
+
+        .text-center {
+            text-align: center;
+        }
+
+        /* --- Boutons --- */
+        .btn {
+            display: inline-block;
+            padding: 12px 25px;
+            border-radius: 5px;
+            text-decoration: none;
+            font-family: var(--font-contraste);
+            font-size: 20px; /* +4pts vs 16px base */
+            font-weight: bold;
+            transition: transform 0.3s ease, background-color 0.3s ease;
+        }
+
+        .btn-primary {
+            background-color: var(--orange);
+            color: var(--bleu);
+            border: 2px solid var(--orange);
+        }
+
+        .btn-secondary {
+            background-color: transparent;
+            color: var(--bleu);
+            border: 2px solid var(--bleu);
+        }
+
+        .btn:hover {
+            transform: translateY(-3px);
+        }
+
+        /* --- Header & Logo --- */
+        .header {
+            background: var(--blanc);
+            padding: 15px 0;
+            border-bottom: 3px solid var(--bleu);
+            text-align: center;
+        }
+
+        .logo-img {
+            max-height: 80px; /* Hauteur maximale pour le logo */
+            width: auto;
+        }
+
+        /* --- Section Hero --- */
+        .hero {
+            position: relative; /* Nécessaire pour la superposition */
+            background-image: url('fondcarte.jpg');
+            background-size: cover;
+            background-position: center;
+            text-align: center;
+            padding: 80px 0;
+            color: var(--blanc); /* Changement de la couleur du texte pour la lisibilité */
+        }
+
+        /* Superposition sombre pour améliorer la lisibilité */
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: rgba(0, 0, 0, 0.6);
+            z-index: 1;
+        }
+
+        /* Le contenu doit être au-dessus de la superposition */
+        .hero .container {
+            position: relative;
+            z-index: 2;
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            color: var(--blanc); /* Le titre doit aussi être blanc */
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+        }
+
+        .hero .subtitle {
+            font-family: var(--font-contraste);
+            font-size: 22px; /* +6pts */
+            color: var(--blanc); /* Le sous-titre aussi */
+            max-width: 700px;
+            margin: 0 auto 30px auto;
+            opacity: 0.9;
+        }
+
+        .hero .cta-buttons {
+            margin-top: 30px;
+        }
+        .hero .cta-buttons .btn {
+            margin: 10px;
+        }
+        /* Ajustement des boutons pour le nouveau fond */
+        .hero .btn-secondary {
+            color: var(--blanc);
+            border-color: var(--blanc);
+        }
+         .hero .btn-secondary:hover {
+            background-color: var(--blanc);
+            color: var(--bleu);
+        }
+
+
+        /* --- Section "Pourquoi Nous" --- */
+        .why-us-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+        .advantage-card {
+            background: var(--fond-clair);
+            padding: 30px;
+            border-left: 5px solid var(--orange);
+            text-align: center;
+        }
+        .advantage-card h3 {
+            color: var(--bleu);
+        }
+
+        /* --- Section "Comment ça marche" --- */
+        #how-it-works {
+            background-color: var(--fond-clair);
+        }
+        .steps-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 40px;
+            margin-top: 40px;
+            text-align: center;
+        }
+        .step {
+            position: relative;
+        }
+        .step .step-number {
+            display: inline-block;
+            width: 60px;
+            height: 60px;
+            line-height: 60px;
+            border-radius: 50%;
+            background-color: var(--bleu);
+            color: var(--blanc);
+            font-family: var(--font-contraste);
+            font-size: 2rem;
+            margin-bottom: 20px;
+        }
+
+        /* --- Section Solutions --- */
+        .solutions-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+            align-items: stretch; /* Pour que les cartes aient la même hauteur */
+        }
+        .solution-card {
+            background: var(--blanc);
+            border: 2px solid var(--bleu);
+            border-radius: 8px;
+            padding: 30px;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .solution-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+        }
+        .solution-card.featured {
+            border-color: var(--orange);
+            border-width: 3px;
+            transform: scale(1.05);
+        }
+        .solution-card h3 {
+            font-size: 1.6rem;
+        }
+        .solution-card .price {
+            font-family: var(--font-contraste);
+            font-size: 2.8rem;
+            color: var(--orange);
+            font-weight: bold;
+            margin: 10px 0;
+        }
+        .solution-card .price small {
+            font-family: var(--font-identitaire);
+            font-size: 1.5rem;
+            color: var(--texte-principal);
+        }
+        .solution-card .price-desc {
+            font-style: italic;
+            margin-bottom: 20px;
+            color: #777;
+        }
+        .solution-card ul {
+            list-style: none;
+            padding: 0;
+            margin-top: auto; /* Pousse les éléments vers le haut et le bouton vers le bas */
+            flex-grow: 1;
+        }
+        .solution-card ul li {
+            margin-bottom: 10px;
+        }
+        .solution-card ul li::before {
+            content: "✔";
+            color: var(--orange);
+            margin-right: 8px;
+        }
+
+        /* --- Section Image de Marque --- */
+        #brand-image {
+             background-color: var(--fond-clair);
+        }
+
+        /* --- Section Prochaines Etapes --- */
+        #next-steps {
+            background-color: var(--fond-clair);
+        }
+        .next-steps-content {
+            max-width: 800px;
+            margin: 40px auto 0 auto;
+            text-align: center;
+            background: var(--fond-clair);
+            padding: 40px;
+            border-radius: 8px;
+        }
+        .next-steps-content .steps-list {
+            text-align: left;
+            display: inline-block;
+            margin: 20px 0;
+            padding-left: 20px;
+        }
+        .next-steps-content .steps-list li {
+            margin-bottom: 10px;
+        }
+        .email-btn {
+            margin: 20px 0 30px 0;
+            background-color: var(--bleu);
+            color: var(--blanc);
+            border-color: var(--bleu);
+        }
+        .required-docs {
+            margin-top: 30px;
+            padding-top: 30px;
+            border-top: 1px solid #ddd;
+        }
+        .required-docs h4 {
+            font-size: 1.2rem;
+            color: var(--bleu);
+        }
+        .required-docs ul {
+            list-style: none;
+            padding: 0;
+            margin-top: 15px;
+        }
+        .required-docs ul li::before {
+            content: "✔";
+            color: var(--orange);
+            margin-right: 8px;
+        }
+
+        /* --- Footer --- */
+        .footer {
+            background-color: var(--bleu);
+            color: var(--blanc);
+            padding: 40px 0 20px 0;
+            text-align: center;
+        }
+        .footer .footer-section {
+            margin-bottom: 30px;
+        }
+        .footer .footer-section h4 {
+            color: var(--blanc);
+            font-family: var(--font-identitaire);
+            font-size: 1.2rem;
+            font-weight: 500;
+            margin-bottom: 15px;
+        }
+        .app-stores-footer {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            align-items: center;
+        }
+        .app-stores-footer .app-store-link img {
+            height: 45px;
+            width: auto;
+            transition: opacity 0.3s ease;
+        }
+        .app-stores-footer .app-store-link:hover img {
+            opacity: 0.8;
+        }
+        .footer a {
+            color: var(--blanc);
+            text-decoration: none;
+            margin: 0 10px;
+            font-size: 0.9rem;
+        }
+        .footer a:hover {
+            text-decoration: underline;
+        }
+        .footer .footer-links {
+            margin-bottom: 20px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        .footer .copyright {
+            font-size: 0.8rem;
+            color: #ccc;
+            margin-top: 20px;
+        }
+
+        /* --- Responsive Design --- */
+        @media (min-width: 768px) {
+            .hero h1 {
+                font-size: 4rem;
+            }
+            .contact-grid {
+                grid-template-columns: 2fr 1fr;
+            }
+        }
+
+        @media (max-width: 767px) {
+            h2 {
+                font-size: 2rem;
+            }
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            .hero .subtitle {
+                font-size: 18px;
+            }
+            .btn {
+                font-size: 18px;
+                padding: 10px 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- HEADER -->
+    <header class="header">
+        <div class="container">
+            <img src="1000000263.png" alt="Logo Les Coursiers Montpelliérains" class="logo-img">
+        </div>
+    </header>
+
+    <main>
+        <!-- SECTION HERO -->
+        <section class="hero">
+            <div class="container">
+                <h1>Prêts à démarrer l'aventure avec nous ?</h1>
+                <p class="subtitle">Finalisez votre inscription en choisissant une de nos options de mise en service. C'est la dernière étape !</p>
+                <div class="cta-buttons">
+                    <a href="#next-steps" class="btn btn-primary">Finaliser mon inscription</a>
+                    <a href="#solutions" class="btn btn-secondary">Voir les options</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION POURQUOI NOUS -->
+        <section id="why-us" class="container">
+            <h2 data-section-title>Pourquoi Nous Choisir ?</h2>
+            <div class="why-us-grid">
+                <div class="advantage-card">
+                    <h3>100% Local</h3>
+                    <p>Une coopérative créée par et pour les Montpelliérains. Nous connaissons chaque rue et chaque raccourci.</p>
+                </div>
+                <div class="advantage-card">
+                    <h3>100% Vélo</h3>
+                    <p>Des livraisons rapides, écologiques et sans émissions pour une ville plus verte et plus saine.</p>
+                </div>
+                <div class="advantage-card">
+                    <h3>100% Éthique</h3>
+                    <p>Nous sommes une coopérative (SCOP) où chaque coursier est sociétaire et participe aux décisions.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION COMMENT ÇA MARCHE -->
+        <section id="how-it-works">
+            <div class="container">
+                <h2>Comment Ça Marche ?</h2>
+                <div class="steps-grid">
+                    <div class="step">
+                        <div class="step-number">1</div>
+                        <h3>Inscription Facile</h3>
+                        <p>Contactez-nous via le formulaire ci-dessous. Nous vous intégrons rapidement à notre plateforme.</p>
+                    </div>
+                    <div class="step">
+                        <div class="step-number">2</div>
+                        <h3>Réception des Commandes</h3>
+                        <p>Vos clients commandent via l'application CoopCycle, et la commande nous est transmise instantanément.</p>
+                    </div>
+                    <div class="step">
+                        <div class="step-number">3</div>
+                        <h3>Livraison Rapide & Fiable</h3>
+                        <p>Un de nos coursiers-sociétaires récupère la commande et la livre avec le sourire, à vélo.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION SOLUTIONS -->
+        <section id="solutions" class="container">
+            <h2 class="text-center">Des Solutions Adaptées à Vos Besoins</h2>
+            <p class="text-center" style="max-width: 800px; margin: 0 auto 40px auto;">Choisissez la formule qui vous convient. Toutes nos offres incluent une commission de 28% HT par commande et les frais de transaction Stripe.</p>
+            <div class="solutions-grid">
+                <div class="solution-card">
+                    <h3>Option Autonome</h3>
+                    <div class="price">Gratuit</div>
+                    <p class="price-desc">Frais d'installation</p>
+                    <ul>
+                        <li>Vous gérez vos menus sur la plateforme.</li>
+                        <li>Vous fournissez votre propre tablette.</li>
+                        <li>Idéal pour démarrer sans investissement.</li>
+                    </ul>
+                    <a href="#next-steps" class="btn btn-secondary" style="margin-top: 20px;">Choisir cette option</a>
+                </div>
+                <div class="solution-card featured">
+                    <h3>Option Clé en Main</h3>
+                    <div class="price">80€ <small>HT</small></div>
+                    <p class="price-desc">Frais unique</p>
+                    <ul>
+                        <li>Nous créons et intégrons vos menus.</li>
+                        <li>Vous fournissez votre propre tablette.</li>
+                        <li>Gagnez du temps au démarrage.</li>
+                    </ul>
+                    <a href="#next-steps" class="btn btn-primary" style="margin-top: 20px;">La plus populaire</a>
+                </div>
+                <div class="solution-card">
+                    <h3>Option Premium</h3>
+                    <div class="price">200€ <small>HT</small></div>
+                    <p class="price-desc">Frais unique</p>
+                    <ul>
+                        <li>Nous créons et intégrons vos menus.</li>
+                        <li>Tablette pré-configurée fournie par nos soins.</li>
+                        <li>La solution la plus simple pour vous.</li>
+                    </ul>
+                    <a href="#next-steps" class="btn btn-secondary" style="margin-top: 20px;">Choisir cette option</a>
+                </div>
+            </div>
+        </section>
+        
+        <!-- SECTION IMAGE DE MARQUE -->
+        <section id="brand-image">
+            <div class="container text-center">
+                <h2>Une Image de Marque Engagée</h2>
+                <p style="max-width: 800px; margin: 0 auto;">En travaillant avec nous, vous associez votre restaurant à des valeurs fortes : l'écologie, le soutien à l'économie locale et une éthique sociale irréprochable. Un argument de poids pour vos clients.</p>
+            </div>
+        </section>
+
+        <!-- SECTION PROCHAINES ETAPES -->
+        <section id="next-steps" style="background-color: var(--fond-clair);">
+            <div class="container">
+                <h2 class="text-center">Comment activer votre partenariat ?</h2>
+                <div class="next-steps-content">
+                    <p>C'est très simple. Pour lancer la mise en service, il vous suffit de nous envoyer un email à l'adresse ci-dessous avec :</p>
+                    <ol class="steps-list">
+                        <li>L'option de mise en service choisie (Autonome, Clé en Main, ou Premium).</li>
+                        <li>Les documents requis, scannés ou photographiés.</li>
+                    </ol>
+                    <a href="mailto:contact@coursiers-montpellier.fr" class="btn email-btn">Envoyer l'email : contact@coursiers-montpellier.fr</a>
+                    <div class="required-docs">
+                        <h4>Rappel des documents à fournir</h4>
+                        <ul>
+                            <li>Pièce d’identité du gérant</li>
+                            <li>Justificatif de domicile (- de 3 mois)</li>
+                            <li>Extrait Kbis (- de 3 mois)</li>
+                            <li>RIB de la société</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+        <div class="container">
+
+            <div class="footer-section">
+                <h4>Téléchargez l'application client</h4>
+                <div class="app-stores-footer">
+                    <a href="https://play.google.com/store/search?q=les%20coursiers%20montpellierains&c=apps" target="_blank" class="app-store-link">
+                        <img src="https://play.google.com/intl/en_us/badges/static/images/badges/fr_badge_web_generic.png" alt="Disponible sur Google Play">
+                    </a>
+                    <a href="https://apps.apple.com/fr/app/coopcycle/id1522875814" target="_blank" class="app-store-link">
+                        <img src="https://developer.apple.com/assets/elements/badges/download-on-the-app-store.svg" alt="Télécharger dans l'App Store">
+                    </a>
+                </div>
+            </div>
+
+            <div class="footer-links">
+                <a href="https://coursiers-montpellier.fr/" target="_blank">Site Officiel</a>
+                <a href="https://coopcycle.org/fr/" target="_blank">CoopCycle</a>
+                <a href="#">Politique de Confidentialité</a>
+            </div>
+            <p class="copyright">&copy; 2025 Les Coursiers Montpelliérains SCOP. Tous droits réservés.</p>
+        </div>
+    </footer>
+
+</body>
+</html>
